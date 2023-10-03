@@ -1,0 +1,17 @@
+[
+    {
+      "mode": "REQUIRED",
+      "name": "file_name",
+      "type": "STRING"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "num_lines",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "tmstmp",
+      "type": "TIMESTAMP"
+    }
+  ]
