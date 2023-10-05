@@ -3,7 +3,9 @@
 '''Module to create utilities functions for the main code'''
 
 import json
+import io
 from googleapiclient.errors import HttpError
+from googleapiclient.http import MediaIoBaseDownload
 
 def keep_csv_files (object_list):
     '''
@@ -57,3 +59,55 @@ def get_drive_files (client):
         print(f"An error occurred: {error}")
         files = None
     return files
+
+def download_file_from_drive (drive_client, file_id, file_path):
+    """
+    Downloads file from Google Drive
+
+    Parameters:
+        - drive_client (client): instance of googleapiclient.discovery.Resource
+        - file_id (str): id of the file that has to be downloaded
+        - file_name (str): path where the file will be saved
+    
+    Returns:
+        - (str): result message
+    """
+    request = drive_client.files().get_media(fileId=file_id)
+    local_file = io.FileIO(file_path, 'wb')
+    downloader = MediaIoBaseDownload(local_file, request)
+
+    done = False
+    while not done:
+        status, done = downloader.next_chunk()
+        print(f"Download {int(status.progress() * 100)}%")
+
+def find_index_of_substring(string, substring):
+    """
+    Gives index position of the substring in the string
+
+    Parameters:
+        - string (str): long string containing substring
+        - substring (str): substring that we want to locate
+    
+    Returns:
+        - index (int): position where is located the substring inside the string
+    """
+    index = string.find(substring)
+    return index
+
+def blob_to_filename(blob_list):
+    """
+    Takes a list containing blobs and retrieves its name
+
+    Parameters:
+        - blob_list (list): contains several instances google.cloud.storage.blob.Blob
+    
+    Returns:
+        - folders (list): contains the name for each blob
+    """
+    folders = []
+    for blob in blob_list:
+        if blob.name.endswith('/'):
+            if blob.name != 'data/':
+                folders.append(blob.name[5:-1])
+    return folders
