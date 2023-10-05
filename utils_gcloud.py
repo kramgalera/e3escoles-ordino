@@ -40,9 +40,9 @@ def upload_storage_file (cs_client, dest_bucket_name, dest_blob_name, file_path)
         bucket = cs_client.bucket(dest_bucket_name)
         blob = bucket.blob(dest_blob_name)
         blob.upload_from_filename(file_path)
-        return "Uploaded {} to {}".format(file_path, dest_bucket_name+dest_blob_name)
-    except Exception:
-        return "Unable to upload file to Google Cloud Storage"
+        return "Upload done succesfully"
+    except Exception as err:
+        return "Unable to upload file to Google Cloud Storage: {}".format(err)
 
 def download_storage_file (cs_client, bucket_name, file_name, file_dest):
     """
@@ -127,6 +127,24 @@ def insert_data_to_bq (bq_client,  schema, data, bq_dataset, final_table_name):
     except Exception as err:
         logging.error("Error occurred while loading data to BigQuery: %s", err)
         return None
+
+def insert_row_to_bq (client, table_id, row):
+    """
+    Insert a single row into a BigQuery table.
+
+    Parameters:
+        - client: BigQuery client instance.
+        - table_id: Full table ID in the format 'project.dataset.table'.
+        - row: The row data to be inserted as a dictionary.
+
+    Returns:
+        - None
+    """
+    errors = client.insert_rows_json(table_id, [row])
+    if errors:
+        logging.error("Error occurred while inserting rows: %s", errors)
+    else:
+        logging.info("Row inserted successfully into %s", table_id)
 
 def _bigquery_connection (json_auth_path):
     """
