@@ -4,6 +4,7 @@
 
 import json
 import io
+import csv
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
 
@@ -111,3 +112,25 @@ def blob_to_filename(blob_list):
             if blob.name != 'data/':
                 folders.append(blob.name[5:-1])
     return folders
+
+def count_csv_length (csv_file_path):
+    """
+    Opens a csv file, counts the length of the file and it close it
+
+    Parameters:
+        - csv_file_path (str): file path
+    
+    Returns:
+        - len_file (int): total number of rows of the file
+    """
+    try:
+        with open(csv_file_path, mode='r', newline='', encoding='utf-8') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            len_file = sum(1 for row in csv_reader) -1
+            return len_file
+    except FileNotFoundError:
+        return f'File {csv_file_path} not found'
+    except Exception as err:
+        return f'An error occurred: {err}'
+    finally:
+        csv_file.close()
