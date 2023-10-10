@@ -9,10 +9,10 @@ def filter_uploaded_files (bq_client, tracker_table_path, csv_files):
     Parameters:
         - bq_client (Client): instance of google.cloud.Bigquery.Client
         - tracker_table_path (str): Google relative path of the BQ table
-        - csv_files (list): contains the names of all .csv files in Drive
+        - csv_files (list): list of dicts containing the names and id of all .csv files in Drive
     
     Returns:
-        - csv_files_def (list): containes the names of the non-uploaded .csv files
+        - csv_files_def (list): list of dicts containing the names id of the non-uploaded .csv files
     """
     csv_files_def = csv_files.copy()
     # Query `tracker_registry` table in order to obtain new files:

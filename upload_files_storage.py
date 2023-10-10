@@ -12,7 +12,20 @@ from utils_gcloud import upload_storage_file, insert_row_to_bq
 def upload_csv_files_storage (csv_files, drive_client, bucket_name, tracker_table_path, config, year):
     """
     Uploads each .csv file to Cloud Storage and updates the `tracker_registry` table
+
+    Parameters:
+        - csv_files (list): list of dicts containing the names and id of the new .csv files
+        - drive_client (Client): instance of googleapiclient.discovery.build
+        - bucket_name (str): name of the Cloud Storage bucket containing the JSON file
+        - tracker_table_path (str): Google relative path of the BQ table
+        - config (dict): contains all env vars
+        - year (list): contains present and past year in str format
+    
+    Returns:
+        - None
     """
+
+    # Load vars and Google Clients
     cs_client = storage.Client()
     bq_client = bigquery.Client()
 
@@ -22,6 +35,7 @@ def upload_csv_files_storage (csv_files, drive_client, bucket_name, tracker_tabl
     current_year_str = year[0]
     previous_year_str = year[1]
 
+    # Main script for each file:
     for index, file in enumerate(csv_files):
         # Calculate index of our substring:
         index_string = find_index_of_substring(file['name'], current_year_str)
