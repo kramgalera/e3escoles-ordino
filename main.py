@@ -20,7 +20,7 @@ from filter_csv_files import filter_uploaded_files
 BUCKET_NAME = os.environ.get('BUCKET_NAME', 'ordino')
 CONFIG_FILE_NAME = os.environ.get('CONFIG_FILE_NAME', 'config/config.json')
 
-def storage_to_drive (event):
+def drive_to_storage (event):
     """
     Main function checking if new .csv files have been uploaded to GDrive and uploading to CStorage
     """
@@ -34,7 +34,7 @@ def storage_to_drive (event):
     bq_dataset = config['bq_dataset']
     bq_tracker_table = config['bq_tracker_table']
 
-    # Create vars: 
+    # Create vars:
     destination_file = '/tmp/key_file.json'
     tracker_table_path = project_id + '.' + bq_dataset + '.' + bq_tracker_table
 
