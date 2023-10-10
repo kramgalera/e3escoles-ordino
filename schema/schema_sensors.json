@@ -1,0 +1,52 @@
+[
+    {
+      "mode": "REQUIRED",
+      "name": "timestamp",
+      "type": "TIMESTAMP"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "reference",
+      "type": "STRING"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "carbon_dioxide",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "temperature",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "relative_humidity",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "atmospheric_pressure",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "carbon_dioxide_quality",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "temperature_quality",
+      "type": "STRING"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "humidity_quality",
+      "type": "STRING"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "file_name",
+      "type": "STRING"
+    }
+  ]
