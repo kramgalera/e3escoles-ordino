@@ -2,7 +2,7 @@
 One of the main functions filtering the already uploaded .csv files on Cloud Storage
 """
 
-def filter_uploaded_files_files (bq_client, tracker_table_path, csv_files):
+def filter_uploaded_files (bq_client, tracker_table_path, csv_files):
     """
     Filters the .csv files from Google Drive, by the ones already uploaded to Cloud Storage
 
