@@ -32,7 +32,7 @@
     {
       "mode": "REQUIRED",
       "name": "carbon_dioxide_quality",
-      "type": "FLOAT"
+      "type": "STRING"
     },
     {
       "mode": "REQUIRED",
