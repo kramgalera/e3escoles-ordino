@@ -58,6 +58,6 @@ def upload_csv_files_storage (csv_files, drive_client, bucket_name, tracker_tabl
         response = upload_storage_file(cs_client, bucket_name, storage_blob_path, local_file_path)
 
         if response == "Upload done succesfully":
-            tracker_data = [file['name'], len_file, current_tmstmp]
+            tracker_data = [file['name'], len_file, 0, current_tmstmp]
             row_data = dict(zip(tracker_table_headers, tracker_data))
             insert_row_to_bq(client=bq_client, table_id= tracker_table_path, row=row_data)

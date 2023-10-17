@@ -2,7 +2,8 @@
 --------
 CREATE TABLE `e3escoles.ordino.tracker_registry` (
     file_name STRING NOT NULL,
-    num_lines INT64 NOT NULL,
+    num_lines_csv INT64 NOT NULL,
+    num_lines_clean INT64 NOT NULL,
     tmstmp TIMESTAMP NOT NULL
 )
 PARTITION BY DATE(tmstmp)

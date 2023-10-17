@@ -16,13 +16,13 @@ def filter_uploaded_files (bq_client, tracker_table_path, csv_files):
     """
     csv_files_def = csv_files.copy()
     # Query `tracker_registry` table in order to obtain new files:
-    query = "select file_name, num_lines from  " + tracker_table_path
+    query = "select file_name, num_lines_csv from  " + tracker_table_path
     query_job = bq_client.query(query)
     rows = query_job.result()
     bq_tracker_results = {}
     bq_tracker_files = []
     for row in rows:
-        bq_tracker_results[row.file_name] = [row.num_lines]
+        bq_tracker_results[row.file_name] = [row.num_lines_csv]
         bq_tracker_files.append(row.file_name)
 
     # Compare both lists and filter already uploaded files

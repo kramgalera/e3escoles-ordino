@@ -58,3 +58,6 @@ def drive_to_storage (event):
 
     years = [current_year_str, previous_year_str]
     upload_csv_files_storage(csv_files, drive_client, BUCKET_NAME, tracker_table_path, config, years)
+
+    return('Sync between Drive and Storage completed properly')
+

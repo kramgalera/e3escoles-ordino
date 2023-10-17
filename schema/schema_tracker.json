@@ -6,7 +6,12 @@
     },
     {
       "mode": "REQUIRED",
-      "name": "num_lines",
+      "name": "num_lines_csv",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "num_lines_clean",
       "type": "INTEGER"
     },
     {
