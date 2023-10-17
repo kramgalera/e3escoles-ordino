@@ -4,7 +4,7 @@ Module to create utilities functions for the main code
 
 import pandas as pd
 
-def refactor_df (df):
+def refactor_df (df, file_name):
     """
     Refactors the .csv format given by the sensor into the one that will be updated to BQ
 
@@ -15,18 +15,32 @@ def refactor_df (df):
         - dataframe (pd.Dataframe): refactored dataframe
     """
 
-    dataframe = df.copy()
-    dataframe.rename(columns={"Time(dd/mm/yyyy)": 'timestamp', 'Carbon dioxide(ppm)': 'carbon_dioxide', 'Temperature(°C)': 'temperature', 'Relative humidity(%)': 'relative_humidity', 'Atmospheric pressure(hPa)': 'atmospheric_pressure'}, inplace=True)
-    dataframe.dropna(axis='rows', how='any', inplace=True)
-    dataframe.reset_index(inplace=True, drop=True)
+    dataf = df.copy()
+    dataf.rename(columns={"Time(dd/mm/yyyy)": 'timestamp', 'Carbon dioxide(ppm)': 'carbon_dioxide', 'Temperature(°C)': 'temperature', 'Relative humidity(%)': 'relative_humidity', 'Atmospheric pressure(hPa)': 'atmospheric_pressure'}, inplace=True)
+    dataf.dropna(axis='rows', how='any', inplace=True)
+    dataf.reset_index(inplace=True, drop=True)
 
     # Data types
-    dataframe['temperature'] = pd.to_numeric(dataframe['temperature'].str.replace(',', '.'), errors='coerce')
-    dataframe['relative_humidity'] = dataframe['relative_humidity'].astype(float)
-    dataframe['carbon_dioxide'] = dataframe['carbon_dioxide'].astype(float)
+    dataf['temperature'] = pd.to_numeric(dataf['temperature'].str.replace(',', '.'), errors='coerce')
+    dataf['relative_humidity'] = dataf['relative_humidity'].astype(float)
+    dataf['carbon_dioxide'] = dataf['carbon_dioxide'].astype(float)
 
+    dataframe = add_parameter_label(dataf, file_name)
     return dataframe
 
+def filter_df (dataframe, file_name, holidays):
+    """
+    Filters the dataframe removing weekends, holidays, and outside school hours
+
+    Parameters:
+        - 
+    
+    Returns:
+        - 
+    """
+    
+    
+    return None
 def add_parameter_label (df, file_name):
     """
     Adds the category for each parameter of the dataframe
@@ -51,7 +65,7 @@ def add_parameter_label (df, file_name):
 
     # CO2 labeling
     bins_co2 = [-float('inf'), 1000, 2000, 5000, 40000, float('inf')]
-    labels_co2 = ['Clean air', 'Low air quality', 'Very low air quality', 'Critical air quality', 'Toxic levels for human beings']
+    labels_co2 = ['Aire net', "Qualitat baixa de l'aire", "Qualitat molt baixa de l'aire", "Qualitat de l'aire crítica", 'Nivells tòxics per a humans']
     dataframe['carbon_dioxide_label'] = pd.cut(dataframe['carbon_dioxide'], bins=bins_co2, labels=labels_co2)
 
     # Humidity labeling

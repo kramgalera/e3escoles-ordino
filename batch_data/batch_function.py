@@ -20,4 +20,4 @@ def batch_file(bq_client, config, bucket_name, file_path):
     bq_dataset = config['bq_dataset']
 
 
-    return 
+    return
