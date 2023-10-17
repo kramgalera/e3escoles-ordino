@@ -1,5 +1,3 @@
-# pylint: disable = W0718
-
 """Module to create utilities functions for the main code"""
 
 import json

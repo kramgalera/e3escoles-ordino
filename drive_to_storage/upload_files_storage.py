@@ -1,5 +1,3 @@
-# pylint: disable = C0301, W0612
-
 """
 One of the main functions uploading the filtered .csv files to Cloud Storage and storing a registry of the file in a BQ table
 """

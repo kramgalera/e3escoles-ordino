@@ -1,5 +1,3 @@
-# pylint: disable= R1732, C0301, W0613, E0611
-
 """
 Main Function of the firt part of the e3escoles project
 """
