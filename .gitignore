@@ -1,6 +1,8 @@
-.env
-*.ipynb
 .DS_Store
 __pycache__
 Config/
+.env
 data_samples/
+analysis/data_analysis/results_analysis/
+analysis/formulari_incomoditat_termica/
+data_warehouse/
