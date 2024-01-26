@@ -38,9 +38,8 @@ def filter_df (dataframe, file_name, holidays):
     Returns:
         - 
     """
-    
-    
     return None
+
 def add_parameter_label (df, file_name):
     """
     Adds the category for each parameter of the dataframe
@@ -60,7 +59,7 @@ def add_parameter_label (df, file_name):
 
     # Temperature labeling
     bins_temp = [-float('inf'), 20, 26, float('inf')]
-    labels_temp = ['Fred', 'Comfort', 'Calor']
+    labels_temp = ['Fred', 'Confort', 'Calor']
     dataframe['temperature_label'] = pd.cut(dataframe['temperature'], bins=bins_temp, labels=labels_temp)
 
     # CO2 labeling
@@ -70,7 +69,7 @@ def add_parameter_label (df, file_name):
 
     # Humidity labeling
     bins_humidty = [-float('inf'), 30, 50, float('inf')]
-    labels_humidity = ['Sec', 'Comfort', 'Molt Humit']
+    labels_humidity = ['Ambient sec', 'Humitat recomanada', 'Ambient humit']
     dataframe['humidity_label'] = pd.cut(dataframe['relative_humidity'], bins=bins_humidty, labels=labels_humidity)
 
     return dataframe
