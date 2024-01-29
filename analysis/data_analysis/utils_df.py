@@ -2,10 +2,27 @@
 
 """Module dedicated to treat the dataframes"""
 
-
+import json
 import pandas as pd
 
-def modify_date(row):
+def load_json (file_path):
+    """
+    Loads json file properly
+
+    Parameters:
+        - file_path (str): path of the .json file we want to open
+    
+    Returns:
+        - (.json)
+    """
+    with open(file_path, 'r', encoding='utf-8') as file:
+        try:
+            return json.load(file)
+
+        except BaseException:
+            return 'The file contains invalid JSON'
+
+def modify_date (row):
     """shdghd"""
     if row['Time(dd/mm/yyyy)'] >= pd.to_datetime('2024-02-01'):
         return row['Time(dd/mm/yyyy)'].replace(day=row['Time(dd/mm/yyyy)'].month, month=row['Time(dd/mm/yyyy)'].day)
@@ -17,7 +34,7 @@ full_df.sort_values(by='Time(dd/mm/yyyy)', inplace=True)
 full_df.reset_index(inplace=True, drop=True)
 full_df'''
 
-def add_descriptions(dataframe):
+def add_descriptions (dataframe):
     """Description"""
 
     full_df = dataframe.copy()
@@ -46,7 +63,7 @@ def add_descriptions(dataframe):
     full_df.loc[(full_df['Relative humidity(%)'] >= 30.) & (full_df['Relative humidity(%)'] <= 50.), 'Humid_Quality'] = 'Humitat recomanada'
     return full_df
 
-def references_2023(dataframe):
+def references_2023 (dataframe):
     """Description"""
 
     full_df = dataframe.copy()
@@ -63,7 +80,7 @@ def references_2023(dataframe):
     full_df.loc[full_df['Reference'].str.contains('03A49_sem'), 'Reference'] = full_df['Reference'].str.replace('03A49_sem', 'Seminari')
     return full_df
 
-def references_2024(dataframe):
+def references_2024 (dataframe):
     """Description"""
 
     full_df = dataframe.copy()
@@ -86,3 +103,13 @@ def references_2024(dataframe):
     full_df.loc[full_df['Reference'].str.contains('0E8DF_sal'), 'Reference'] = full_df['Reference'].str.replace('0E8DF_sal', 'sala_profes_24')
     full_df.loc[full_df['Reference'].str.contains('0E8DF_sal'), 'Reference'] = full_df['Reference'].str.replace('0E8DF_sal', 'sala_profes_24')
     return full_df
+
+def filter_2023_year (dataframe, ini_tmstmp='2022-01-01', fin_tmstmp='2023-09-11'):
+    """Description"""
+    df = dataframe.copy()
+    return df[(df['Time(dd/mm/yyyy)'] >= pd.to_datetime(ini_tmstmp)) & (df['Time(dd/mm/yyyy)'] <= pd.to_datetime(fin_tmstmp))]
+
+def filter_2024_year (dataframe, ini_tmstmp='2023-09-11', fin_tmstmp='2024-06-28'):
+    """Description"""
+    df = dataframe.copy()
+    return df[(df['Time(dd/mm/yyyy)'] >= pd.to_datetime(ini_tmstmp)) & (df['Time(dd/mm/yyyy)'] <= pd.to_datetime(fin_tmstmp))]
