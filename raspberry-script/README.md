@@ -9,11 +9,15 @@ Fitxer de documentació de la implementació d'una Raspberry Pi per l'exportaci�
 
 Els passos a seguir requereixen disposar d'un Raspberry Pi amb RaspberryPi OS, una connexió Internet permanent i la possibilitat de connectar-se per Bluetooth.
 
-Tots aquestos passos estan fets per poder-se realitzar des d'un terminal, no és necessari disposar d'una interfície gràfica.
 
 | ⚠️ Atenció  | 
 |------------|
 | En el cas de no utilitzar una Raspberry o RaspberryPi OS, els passos a seguir poden canviar lleugerament. |
+
+
+| 🛑 Atenció  |
+|-------------|
+| La xarxa XENA té un firewall bastant restrictiu, és recomanable portar l'equipament necessari (cable HDMI, adaptador per VGA, teclat, ...) per configurar el dispositiu in situ. |
 
 
 ### Instal·lació de les dependències
@@ -82,7 +86,7 @@ python -m venv ./venv
 És imprescindible d'assignar un identificador únic al dispositiu per tal de poder identificar-lo.
 
 ```bash
-nano ./env
+nano .env
 ```
 
 ```env
