@@ -102,21 +102,6 @@ mkdir ~/.config/gcloud
 nano ~/.config/gcloud/application_default_credentials.json
 ```
 
-```json
-{
-  "delegates": [],
-  "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/raspberry-sensors-aranet@e3escoles.iam.gserviceaccount.com:generateAccessToken",
-  "source_credentials": {
-    "account": "",
-    "client_id": "764086051850-6qr4p6gpi6hn506pt8ejuq83di341hur.apps.googleusercontent.com",
-    "client_secret": "d-FL95Q19q7MQmFpd7hHD0Ty",
-    "refresh_token": "1//03KTT-9SKMFQICgYIARAAGAMSNwF-L9Irb76O31D_d33lQGiXfthwNRkURZRdrNraR7MqSiy1Tzcl0RrSEBu0mLf1BF2XVdqphLA",
-    "type": "authorized_user",
-    "universe_domain": "googleapis.com"
-  },
-  "type": "impersonated_service_account"
-}
-```
 
 ### Assignació de dispositius
 
